@@ -1,0 +1,43 @@
+# My Path to a Software Engineering Job
+
+**Public learning journal.** I am documenting my journey from a non-CS background to a software engineering role. Commit history reflects daily study in programming fundamentals, computer science, data structures and algorithms, and system design.
+
+- **Repository:** [to be filled — GitHub URL]
+- **Current phase:** Phase 0 — Language & Environment Setup
+- **Target role archetype:** AI lab, big tech, mid-size product, and startups
+- **Language:** Python
+- **Weekly study hours:** 7 hours
+- **Start date:** 2026-09-30
+
+## Phase Progress
+- [ ] Phase 0 — Language & Environment Setup
+- [ ] Phase 1 — Programming Fundamentals
+- [ ] Phase 2 — Core Computer Science
+- [ ] Phase 3 — Data Structures & Algorithms
+- [ ] Phase 4 — System Design
+- [ ] Phase 5 — Mock Interviews & Behavioral
+
+## This Week's Focus
+- Set up a clean Python development environment in VS Code, confirm the terminal can run Python, and create a short hello-world workflow.
+- Complete one focused CS50-style intro unit on problem solving and basic Python syntax.
+- Write a small note in `notes/fundamentals/` on variables, control flow, and functions in your own words.
+- Start a 35-minute DSA warm-up: solve one easy array/string problem from NeetCode without AI help and log it in `log/dsa-log.md`.
+- Goal for the week: be comfortable with Python basics and a repeatable study workflow before moving into full fundamentals work.
+
+## Currently Stuck On
+- (nothing yet)
+
+## Resources In Use
+- CS50 (edX)
+- Teach Yourself CS (teachyourselfcs.com)
+- NeetCode 150
+- System Design Primer (GitHub)
+
+## Where things live
+- `ROADMAP.md` — the full six-phase curriculum
+- `log/` — daily tracking: DSA problems, concepts, system design, behavioral stories
+- `notes/` — longer-form notes by subject
+- `projects/` — standalone portfolio projects (each gets its own repo once it ships)
+- `sandbox/` — scratch space for experiments, never committed meaningfully
+
+---

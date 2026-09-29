@@ -1,0 +1,17 @@
+{
+    "github.copilot.enable": {
+        "*": false,
+        "markdown": true,
+        "plaintext": true
+    },
+    "github.copilot.nextEditSuggestions.enabled": false,
+    "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "files.autoSave": "afterDelay",
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/node_modules": true
+    }
+}
