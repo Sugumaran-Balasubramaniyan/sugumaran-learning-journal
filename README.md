@@ -16,6 +16,7 @@
 - Set up a clean Python workflow in VS Code and confirmed the environment can run Python from the terminal.
 - Built a basic hello-world and loop exercise in the sandbox to confirm syntax and iteration basics.
 - Wrote a short note on functions and loops in `notes/fundamentals/functions-and-loops.md`.
+- Practiced `if`, `elif`, and `else` with a positive, negative, or zero number check in `sandbox/conditionals.py`.
 - Logged the first DSA warm-up in `log/dsa-log.md`.
 
 ## This Week's Focus

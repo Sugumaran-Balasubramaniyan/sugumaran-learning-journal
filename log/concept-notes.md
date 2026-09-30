@@ -8,3 +8,10 @@ Use this template for each concept. Do not copy the textbook — write it in you
 - **Time / space complexity (if applicable):** For a simple loop over n items, the time complexity is O(n).
 - **Source:** Python fundamentals practice / CS50-style learning
 - **Self-quiz result:** I can explain the difference between a function definition, a function call, and a loop, and I understand that loops repeat work while functions package reusable logic.
+
+## Conditionals and Boolean Logic
+- **In my own words:** A conditional lets Python choose which block of code to run based on whether a comparison is true or false. `if` checks the first condition, `elif` checks another possibility, and `else` handles everything that remains.
+- **Why it matters:** Conditionals let programs make decisions and respond differently to different inputs.
+- **Time / space complexity (if applicable):** A fixed chain of conditional checks is O(1) time and O(1) space.
+- **Source:** Python fundamentals practice / CS50-style learning
+- **Self-quiz result:** I can use `if`, `elif`, and `else` to classify a number as positive, negative, or zero.
