@@ -10,17 +10,23 @@
 - **Start date:** 2026-09-30
 
 ## Phase Progress
-- [ ] Phase 0 — Language & Environment Setup
+- [x] Phase 0 — Language & Environment Setup
 - [ ] Phase 1 — Programming Fundamentals
 - [ ] Phase 2 — Core Computer Science
 - [ ] Phase 3 — Data Structures & Algorithms
 - [ ] Phase 4 — System Design
 - [ ] Phase 5 — Mock Interviews & Behavioral
 
+## Recent Progress
+- Set up a clean Python workflow in VS Code and confirmed the environment can run Python from the terminal.
+- Built a basic hello-world and loop exercise in the sandbox to confirm syntax and iteration basics.
+- Wrote a short note on functions and loops in `notes/fundamentals/functions-and-loops.md`.
+- Logged the first DSA warm-up in `log/dsa-log.md`.
+
 ## This Week's Focus
-- Set up a clean Python development environment in VS Code, confirm the terminal can run Python, and create a short hello-world workflow.
+- Finish the core Python fundamentals block: variables, conditionals, functions, and loops.
 - Complete one focused CS50-style intro unit on problem solving and basic Python syntax.
-- Write a small note in `notes/fundamentals/` on variables, control flow, and functions in your own words.
+- Write a second short note in `notes/fundamentals/` on variables, control flow, and functions in your own words.
 - Start a 35-minute DSA warm-up: solve one easy array/string problem from NeetCode without AI help and log it in `log/dsa-log.md`.
 - Goal for the week: be comfortable with Python basics and a repeatable study workflow before moving into full fundamentals work.
 
