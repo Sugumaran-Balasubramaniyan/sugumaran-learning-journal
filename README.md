@@ -1,4 +1,4 @@
-# My Path to a learning Software Engineering
+# My Path to learning Software Engineering
 
 **Public learning journal.** I am documenting my journey from a non-CS background to a software engineering. Commit history reflects daily study in programming fundamentals, computer science, data structures and algorithms, and system design.
 
