@@ -1,13 +1,8 @@
-# My Path to learning Software Engineering
-
-**Public learning journal.** I am documenting my journey from a non-CS background to a software engineering. Commit history reflects daily study in programming fundamentals, computer science, data structures and algorithms, and system design.
+**Public learning journal.** Documenting my journey in software engineering. Commit history reflects daily study in programming fundamentals, computer science, data structures and algorithms, and system design.
 
 - **Repository:** https://github.com/Sugumaran-Balasubramaniyan/sugumaran-learning-journal
 - **Current phase:** Phase 0 — Language & Environment Setup
-- **Target role archetype:** AI lab, big tech, mid-size product, and startups
 - **Language:** Python
-- **Weekly study hours:** 7 hours
-- **Start date:** 2026-09-30
 
 ## Phase Progress
 - [x] Phase 0 — Language & Environment Setup
