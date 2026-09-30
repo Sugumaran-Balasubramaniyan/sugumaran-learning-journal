@@ -22,7 +22,7 @@ def loop(a,b):
 
 a = 1
 b = 2
-name = "Ada"
+name = "Mark"
 add(a,b)
 greeting(name)
 loop(a,b)
