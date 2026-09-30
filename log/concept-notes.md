@@ -15,3 +15,17 @@ Use this template for each concept. Do not copy the textbook — write it in you
 - **Time / space complexity (if applicable):** A fixed chain of conditional checks is O(1) time and O(1) space.
 - **Source:** Python fundamentals practice / CS50-style learning
 - **Self-quiz result:** I can use `if`, `elif`, and `else` to classify a number as positive, negative, or zero.
+
+## Collections and Error Handling
+- **In my own words:** Lists store ordered, changeable values; tuples store ordered values that should not change; sets store unique values; and dictionaries store key-value pairs. `try` and `except` handle expected errors such as invalid numeric input.
+- **Why it matters:** Collections organize data, while error handling keeps programs usable when input is unexpected.
+- **Time / space complexity (if applicable):** Accessing a list or tuple by index is O(1); looping through a collection is O(n).
+- **Source:** Python fundamentals practice / CS50-style learning
+- **Self-quiz result:** I can create, access, modify, and iterate through basic Python collections, and catch `ValueError` from invalid integer input.
+
+## Input, Loops, and Small Programs
+- **In my own words:** `input()` reads text, so numeric input must be converted with `int()` or `float()`. A `while` loop repeats until its condition becomes false, and `continue` skips the rest of the current iteration.
+- **Why it matters:** These tools let a program interact with users and repeat work until a task is complete.
+- **Time / space complexity (if applicable):** A guessing game with one guess per iteration uses O(g) time for g guesses and O(1) additional space.
+- **Source:** Python fundamentals practice / CS50-style learning
+- **Self-quiz result:** I built a number-guessing game that validates input, gives high/low hints, and stops when the correct number is guessed.

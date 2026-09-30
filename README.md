@@ -20,11 +20,10 @@
 - Logged the first DSA warm-up in `log/dsa-log.md`.
 
 ## This Week's Focus
-- Finish the core Python fundamentals block: variables, conditionals, functions, and loops.
-- Complete one focused CS50-style intro unit on problem solving and basic Python syntax.
-- Write a second short note in `notes/fundamentals/` on variables, control flow, and functions in your own words.
-- Start a 35-minute DSA warm-up: solve one easy array/string problem from NeetCode without AI help and log it in `log/dsa-log.md`.
-- Goal for the week: be comfortable with Python basics and a repeatable study workflow before moving into full fundamentals work.
+- Completed core practice with input, collections, error handling, loops, and conditionals.
+- Built and tested a number-guessing game using random numbers, a `while` loop, and `try`/`except`.
+- Next: practice defining functions with parameters and return values.
+- Goal for the week: finish the Python fundamentals block and begin small reusable programs.
 
 ## Currently Stuck On
 - (nothing yet)
