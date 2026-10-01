@@ -29,3 +29,10 @@ Use this template for each concept. Do not copy the textbook — write it in you
 - **Time / space complexity (if applicable):** A guessing game with one guess per iteration uses O(g) time for g guesses and O(1) additional space.
 - **Source:** Python fundamentals practice / CS50-style learning
 - **Self-quiz result:** I built a number-guessing game that validates input, gives high/low hints, and stops when the correct number is guessed.
+
+## Functions in a Small Program
+- **In my own words:** Functions can give distinct jobs, such as adding or viewing tasks, a clear place in a program. I can pass the task list to a function so the functions work with the same data.
+- **Why it matters:** Breaking a program into functions makes each action easier to understand, test, and update.
+- **Time / space complexity (if applicable):** Depends on the work inside each function; iterating through n tasks is O(n) time.
+- **Source:** To-do CLI practice
+- **Self-quiz result:** I refactored the to-do menu actions into functions that receive the task list; I am practicing reusing one save function instead of repeating file-writing code.

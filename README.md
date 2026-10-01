@@ -20,10 +20,10 @@
 - Logged the first DSA warm-up in `log/dsa-log.md`.
 
 ## This Week's Focus
-- Completed core practice with input, collections, error handling, loops, and conditionals.
-- Built and tested a number-guessing game using random numbers, a `while` loop, and `try`/`except`.
-- Next: practice defining functions with parameters and return values.
-- Goal for the week: finish the Python fundamentals block and begin small reusable programs.
+- Completed core practice with input, collections, error handling, loops, conditionals, and functions.
+- Built a to-do CLI with add, view, and remove actions, plus file-based task persistence.
+- Next: build the Phase 1 web scraper milestone from scratch.
+- Goal for the week: practice fetching a webpage and extracting information from its HTML.
 
 ## Currently Stuck On
 - (nothing yet)
