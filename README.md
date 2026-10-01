@@ -23,8 +23,8 @@
 - Completed core practice with input, collections, error handling, loops, conditionals, and functions.
 - Built a to-do CLI with add, view, and remove actions, plus file-based task persistence.
 - Built a web scraper that extracts quote-author pairs across all 10 pages of the practice site.
-- Next: begin Phase 2 with data structures and algorithms.
-- Goal for the week: understand how common data structures organize information and support operations.
+- Current topic: linked-list nodes, references, and traversal.
+- Goal for the week: build and traverse a linked list, then compare its operation costs with dynamic arrays.
 
 ## Currently Stuck On
 - (nothing yet)

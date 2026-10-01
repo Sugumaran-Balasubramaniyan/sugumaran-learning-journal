@@ -43,3 +43,17 @@ Use this template for each concept. Do not copy the textbook — write it in you
 - **Time / space complexity (if applicable):** For p pages with q quote records per page, processing time is O(pq); storing only the current page uses O(q) space.
 - **Source:** Quotes to Scrape practice project
 - **Self-quiz result:** I fetched all 10 pages, extracted 100 quote-author pairs, checked HTTP responses, and stopped when the Next link was absent.
+
+## Dynamic Arrays and List Complexity
+- **In my own words:** Reading a list item by index is O(1). Searching takes O(n) in the worst case, and inserting at the beginning takes O(n) because later items shift. Appending is O(1) amortized.
+- **Why it matters:** Operation costs help predict how a program will scale as its data grows.
+- **Time / space complexity (if applicable):** Index access O(1), search O(n), front insertion O(n), and append O(1) amortized.
+- **Source:** Phase 2 data structures and algorithms practice
+- **Self-quiz result:** I identified why front insertion requires shifting, why append is usually constant time, and why doubling the list size roughly doubles search work.
+
+## Linked Lists
+- **In my own words:** Finding a node can take O(n) because nodes may need to be visited one at a time. Inserting at the head or after a node I already have takes O(1) because only a few references change.
+- **Why it matters:** Linked lists make some insertions efficient, but finding a position still requires traversal.
+- **Time / space complexity (if applicable):** Searching or indexing is O(n); insertion at a known node is O(1).
+- **Source:** Phase 2 data structures and algorithms practice
+- **Self-quiz result:** I distinguished the O(n) cost of finding a node from O(1) insertion at a known node, traced head insertion by linking the new node to the old head before updating the head reference, identified `None` as the end-of-list marker, and created and linked Node instances.
