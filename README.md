@@ -22,8 +22,9 @@
 ## This Week's Focus
 - Completed core practice with input, collections, error handling, loops, conditionals, and functions.
 - Built a to-do CLI with add, view, and remove actions, plus file-based task persistence.
-- Next: build the Phase 1 web scraper milestone from scratch.
-- Goal for the week: practice fetching a webpage and extracting information from its HTML.
+- Built a web scraper that extracts quote-author pairs across all 10 pages of the practice site.
+- Next: begin Phase 2 with data structures and algorithms.
+- Goal for the week: understand how common data structures organize information and support operations.
 
 ## Currently Stuck On
 - (nothing yet)

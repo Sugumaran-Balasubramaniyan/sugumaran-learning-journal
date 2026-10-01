@@ -36,3 +36,10 @@ Use this template for each concept. Do not copy the textbook — write it in you
 - **Time / space complexity (if applicable):** Depends on the work inside each function; iterating through n tasks is O(n) time.
 - **Source:** To-do CLI practice
 - **Self-quiz result:** I refactored the to-do menu actions into functions that receive the task list; I am practicing reusing one save function instead of repeating file-writing code.
+
+## Web Requests, HTML Parsing, and Pagination
+- **In my own words:** A scraper fetches a page, parses its HTML, and extracts related information from each matching container. It can follow the page's relative Next link until no next page is available.
+- **Why it matters:** Parsing structured HTML and following pagination lets a program collect related information across multiple pages.
+- **Time / space complexity (if applicable):** For p pages with q quote records per page, processing time is O(pq); storing only the current page uses O(q) space.
+- **Source:** Quotes to Scrape practice project
+- **Self-quiz result:** I fetched all 10 pages, extracted 100 quote-author pairs, checked HTTP responses, and stopped when the Next link was absent.
