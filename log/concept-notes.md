@@ -56,7 +56,7 @@ Use this template for each concept. Do not copy the textbook — write it in you
 - **Why it matters:** Linked lists make some insertions and removals efficient when the needed node references are available, but finding a position still requires traversal.
 - **Time / space complexity (if applicable):** Searching or indexing is O(n); insertion after a known node and removal with a known predecessor are O(1); append by traversal is O(n), or O(1) with a maintained tail reference.
 - **Source:** Phase 2 data structures and algorithms practice
-- **Self-quiz result:** I distinguished the O(n) cost of finding a node from O(1) pointer updates, implemented head insertion, identified `None` as the end-of-list marker, created and linked Node instances, traversed with a separate current-node reference so the head remains available, appended a node to empty and non-empty lists, implemented `contains` for found, missing, and empty-list cases, and identified that removing B from A → B → C requires changing A's `next` to C.
+- **Self-quiz result:** I distinguished the O(n) cost of finding a node from O(1) pointer updates, implemented head insertion, identified `None` as the end-of-list marker, created and linked Node instances, traversed with a separate current-node reference so the head remains available, appended a node to empty and non-empty lists, implemented `contains` for found, missing, and empty-list cases, and implemented and tested `remove` for head, middle, and missing targets in empty and non-empty lists.
 
 ## Classes and Instances
 - **In my own words:** A class defines the structure and behavior for objects. Each instance has its own attributes; `__init__` sets them when the instance is created.

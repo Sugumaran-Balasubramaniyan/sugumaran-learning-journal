@@ -32,15 +32,23 @@ class LinkedList:
              print("No Match")
              return False
      def remove(self, target):
-         previous = None
          cursor = self.head
+         previous = None
          while cursor is not None:
-             if cursor.value == target:
+             if cursor.value != target:
+                 previous = cursor
+                 cursor = cursor.next
+             elif cursor.value == target:
+                 if previous is None:
+                     self.head = cursor.next
+                     return True
                  previous.next = cursor.next
-                 
-                 
+                 return True
+         return False
 
-         
+             
+             
+             
 
 a = LinkedList()
 
@@ -48,9 +56,21 @@ a.append("A")
 a.append("B")
 a.append("C")
 
+print("Full list:")
 a.display()
 
 a.contains("B")
+
+a.remove("B")
+
+print("List after removing B:")
+a.display()
+
+a.remove("A")
+
+print("List after removing A:")
+a.display()
+
 
    
 
