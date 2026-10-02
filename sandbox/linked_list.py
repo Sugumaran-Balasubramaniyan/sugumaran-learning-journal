@@ -3,19 +3,45 @@ class Node:
         self.value = value
         self.next = None
 
-# Create Node A and Node B
+
+
+
+# Create Nodes
 node_a = Node("A")
 node_b = Node("B")
 node_c = Node("C")
+node_d = Node("D")
+node_e = Node("E")
 
-# Link Node A to Node B
+# Head node
+head_node = node_a
+
+# tail node
+tail_node = node_e
+
+# Link Nodes
+node_d.next = head_node
 node_a.next = node_b
 node_b.next = node_c
 
+
+
+
+# update head node
+head_node = node_d
+
+current_node = head_node
+
+# Adding new node in the tail
+while current_node is not None:
+    if current_node.next == None:
+        last_node = current_node
+    current_node = current_node.next
+
+last_node.next = tail_node
+
 # Let's verify the chain
-current = node_a
-
-while current is not None:
-    print(current.value)
-    current = current.next
-
+start_node = head_node
+while start_node is not None:
+    print(start_node.value)
+    start_node = start_node.next

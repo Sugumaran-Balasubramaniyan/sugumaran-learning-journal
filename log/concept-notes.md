@@ -52,8 +52,8 @@ Use this template for each concept. Do not copy the textbook — write it in you
 - **Self-quiz result:** I identified why front insertion requires shifting, why append is usually constant time, and why doubling the list size roughly doubles search work.
 
 ## Linked Lists
-- **In my own words:** Finding a node can take O(n) because nodes may need to be visited one at a time. Inserting at the head or after a node I already have takes O(1) because only a few references change.
+- **In my own words:** Finding a node can take O(n) because nodes may need to be visited one at a time. Inserting at the head or after a node I already have takes O(1), while appending by traversing takes O(n) unless a tail reference is maintained.
 - **Why it matters:** Linked lists make some insertions efficient, but finding a position still requires traversal.
-- **Time / space complexity (if applicable):** Searching or indexing is O(n); insertion at a known node is O(1).
+- **Time / space complexity (if applicable):** Searching or indexing is O(n); insertion at a known node is O(1); append by traversal is O(n), or O(1) with a maintained tail reference.
 - **Source:** Phase 2 data structures and algorithms practice
-- **Self-quiz result:** I distinguished the O(n) cost of finding a node from O(1) insertion at a known node, traced head insertion by linking the new node to the old head before updating the head reference, identified `None` as the end-of-list marker, created and linked Node instances, and traversed the chain to print each node's value.
+- **Self-quiz result:** I distinguished the O(n) cost of finding a node from O(1) insertion at a known node, implemented head insertion, identified `None` as the end-of-list marker, created and linked Node instances, traversed with a separate current-node reference so the head remains available, and appended a node by finding the last node and updating its `next` reference.

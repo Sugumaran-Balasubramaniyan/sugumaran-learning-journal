@@ -23,8 +23,8 @@
 - Completed core practice with input, collections, error handling, loops, conditionals, and functions.
 - Built a to-do CLI with add, view, and remove actions, plus file-based task persistence.
 - Built a web scraper that extracts quote-author pairs across all 10 pages of the practice site.
-- Current topic: linked-list nodes, references, and traversal.
-- Goal for the week: build and traverse a linked list, then compare its operation costs with dynamic arrays.
+- Current topic: linked-list traversal, head insertion, and tail append.
+- Goal for the week: implement core linked-list operations and compare their costs with dynamic arrays.
 
 ## Currently Stuck On
 - (nothing yet)
