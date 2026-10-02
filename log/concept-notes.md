@@ -64,3 +64,10 @@ Use this template for each concept. Do not copy the textbook — write it in you
 - **Time / space complexity (if applicable):** Not applicable.
 - **Source:** Python linked-list practice
 - **Self-quiz result:** I created a `LinkedList` instance whose `head` initializes to `None`, implemented `append` for empty and non-empty lists, and implemented `display` by traversing with a separate cursor.
+
+## Stacks
+- **In my own words:** A stack follows last in, first out (LIFO). The most recently pushed item is the next one popped.
+- **Why it matters:** Stacks model workflows where the newest item must be handled first, such as undo history or function calls.
+- **Time / space complexity (if applicable):** With a Python list used as the stack, pushing and popping at the end are O(1) amortized.
+- **Source:** Python stack practice
+- **Self-quiz result:** I pushed X, then Y, and verified that pop returns Y while X remains. I also handled pop on an empty stack by returning `None`.

@@ -23,8 +23,10 @@
 - Completed core practice with input, collections, error handling, loops, conditionals, and functions.
 - Built a to-do CLI with add, view, and remove actions, plus file-based task persistence.
 - Built a web scraper that extracts quote-author pairs across all 10 pages of the practice site.
-- Current topic: linked-list append, search, and removal.
-- Goal for the week: implement core linked-list operations and compare their costs with dynamic arrays.
+- Implemented a singly linked list with append, display, search, and removal operations.
+- Practiced stack push and pop, including the empty-stack case.
+- Current topic: queues.
+- Goal for the week: understand FIFO behavior and implement enqueue and dequeue.
 
 ## Currently Stuck On
 - (nothing yet)
