@@ -52,8 +52,15 @@ Use this template for each concept. Do not copy the textbook — write it in you
 - **Self-quiz result:** I identified why front insertion requires shifting, why append is usually constant time, and why doubling the list size roughly doubles search work.
 
 ## Linked Lists
-- **In my own words:** Finding a node can take O(n) because nodes may need to be visited one at a time. Inserting at the head or after a node I already have takes O(1), while appending by traversing takes O(n) unless a tail reference is maintained.
-- **Why it matters:** Linked lists make some insertions efficient, but finding a position still requires traversal.
-- **Time / space complexity (if applicable):** Searching or indexing is O(n); insertion at a known node is O(1); append by traversal is O(n), or O(1) with a maintained tail reference.
+- **In my own words:** Finding a node can take O(n) because nodes may need to be visited one at a time. Inserting at the head or after a node I already have takes O(1), while appending by traversing takes O(n) unless a tail reference is maintained. Removing a middle node means linking its previous node to its next node.
+- **Why it matters:** Linked lists make some insertions and removals efficient when the needed node references are available, but finding a position still requires traversal.
+- **Time / space complexity (if applicable):** Searching or indexing is O(n); insertion after a known node and removal with a known predecessor are O(1); append by traversal is O(n), or O(1) with a maintained tail reference.
 - **Source:** Phase 2 data structures and algorithms practice
-- **Self-quiz result:** I distinguished the O(n) cost of finding a node from O(1) insertion at a known node, implemented head insertion, identified `None` as the end-of-list marker, created and linked Node instances, traversed with a separate current-node reference so the head remains available, and appended a node by finding the last node and updating its `next` reference.
+- **Self-quiz result:** I distinguished the O(n) cost of finding a node from O(1) pointer updates, implemented head insertion, identified `None` as the end-of-list marker, created and linked Node instances, traversed with a separate current-node reference so the head remains available, appended a node to empty and non-empty lists, implemented `contains` for found, missing, and empty-list cases, and identified that removing B from A → B → C requires changing A's `next` to C.
+
+## Classes and Instances
+- **In my own words:** A class defines the structure and behavior for objects. Each instance has its own attributes; `__init__` sets them when the instance is created.
+- **Why it matters:** Classes let a data structure keep its state, such as a linked list's head, together with the operations that use it.
+- **Time / space complexity (if applicable):** Not applicable.
+- **Source:** Python linked-list practice
+- **Self-quiz result:** I created a `LinkedList` instance whose `head` initializes to `None`, implemented `append` for empty and non-empty lists, and implemented `display` by traversing with a separate cursor.

@@ -3,45 +3,42 @@ class Node:
         self.value = value
         self.next = None
 
+class LinkedList:
+     def __init__(self):
+        self.head = None
+     def append(self, value):
+        cursor = self.head
+        if cursor is None:
+            self.head = Node(value)
+        else:
+            while cursor.next is not None:
+                cursor = cursor.next
+            cursor.next = Node(value)
+     def display(self):
+         cursor = self.head
+         while cursor is not None:
+             print(cursor.value)
+             cursor = cursor.next
+     def contains(self, target):
+         cursor = self.head
+         while cursor is not None:
+             if cursor.value == target:
+                 return True
+             else:
+                 cursor = cursor.next
+         if cursor is None:
+             return False
+         
+
+a = LinkedList()
+
+a.append("A")
+
+print(a.head.value)
+
+a.append("B")
+
+a.display()
+   
 
 
-
-# Create Nodes
-node_a = Node("A")
-node_b = Node("B")
-node_c = Node("C")
-node_d = Node("D")
-node_e = Node("E")
-
-# Head node
-head_node = node_a
-
-# tail node
-tail_node = node_e
-
-# Link Nodes
-node_d.next = head_node
-node_a.next = node_b
-node_b.next = node_c
-
-
-
-
-# update head node
-head_node = node_d
-
-current_node = head_node
-
-# Adding new node in the tail
-while current_node is not None:
-    if current_node.next == None:
-        last_node = current_node
-    current_node = current_node.next
-
-last_node.next = tail_node
-
-# Let's verify the chain
-start_node = head_node
-while start_node is not None:
-    print(start_node.value)
-    start_node = start_node.next
