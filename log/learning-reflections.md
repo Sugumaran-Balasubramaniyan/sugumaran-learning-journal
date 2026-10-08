@@ -17,3 +17,11 @@ Use this short check-in after each topic. Record the learner's own answers; leav
 - **Write it:**
 - **Apply it to a new problem:**
 - **Adjustment for next topic:**
+
+## Topic: Binary Search Trees
+- **Most helpful activity:** Diagram and code example
+- **Still confusing:**
+- **Explain it:**
+- **Write it:**
+- **Apply it to a new problem:**
+- **Adjustment for next topic:**

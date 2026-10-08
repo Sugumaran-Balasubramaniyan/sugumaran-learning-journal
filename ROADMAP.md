@@ -54,7 +54,7 @@ Use the three learning checks as evidence, not as a demand to get everything rig
 - Implement BST from scratch
 - Write a one-page explanation of virtual memory
 
-**Current sequence:** Binary search trees next. Linked list fundamentals and a hash map with insertion, retrieval, and collision handling have already been practiced in the sandbox.
+**Current sequence:** Binary search trees are in progress, with independent review next. Linked list fundamentals and a hash map with insertion, retrieval, and collision handling have already been practiced in the sandbox. Virtual memory remains a later Phase 2 milestone.
 
 ## Phase 3 (Weeks 25–40)
 **Focus:** DSA for interviews.

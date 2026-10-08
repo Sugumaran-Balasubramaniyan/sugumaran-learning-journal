@@ -85,3 +85,10 @@ Use this template for each concept. Do not copy the textbook — write it in you
 - **Time / space complexity (if applicable):** With a good key distribution, lookup and insertion are O(1) on average. With chaining, an operation can take O(n) in the worst case if many keys land in one bucket. This practice implementation uses a fixed number of buckets and does not resize.
 - **Source:** Python hash map practice
 - **Self-quiz result:** Implemented `put` and `get` with bucket lists, handled collisions and updates, returned `None` for a missing key, and used the map to count repeated colors. Needed hints while building the loop and frequency-counting logic; independent implementation has not yet been demonstrated.
+
+## Binary Search Trees
+- **In my own words:** Each node has up to two children. Smaller values go left and larger values go right. In-order traversal visits left, current, then right, producing ascending values.
+- **Why it matters:** A binary search tree uses its ordering rule to guide insertion and search toward the part of the tree where a value belongs.
+- **Time / space complexity (if applicable):** Insert and search take O(h), where h is the tree height: O(log n) when balanced and O(n) when skewed. In-order traversal takes O(n) time and O(h) call-stack space.
+- **Source:** Python binary search tree practice
+- **Self-quiz result:** With guided help, practiced insertion, `contains`, and in-order traversal; verified traversal of 8, 3, 10, and 6 returns 3, 6, 8, 10. Explained that smaller values appear in the left subtree. Independent implementation and transfer practice remain to be checked.

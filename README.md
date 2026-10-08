@@ -29,8 +29,9 @@
 - Practiced stack push and pop, including the empty-stack case.
 - Implemented queue enqueue and dequeue, verified FIFO order, and handled dequeue on an empty queue.
 - Implemented hash map insertion and retrieval, handled collisions, updated existing keys, and applied the map to frequency counting.
-- Current topic: binary search trees.
-- Goal for the week: understand tree nodes and ordering, then implement insertion and search.
+- Practiced binary search tree insertion, search, and in-order traversal with guided help; confirmed traversal produces sorted values.
+- Current topic: binary search trees (independent review).
+- Goal for the week: recreate insertion, search, and traversal independently, then apply them to a new tree.
 - Learning loop: explanation, runnable example, explained code fragment, independent exercise, then reflection.
 
 ## Currently Stuck On
