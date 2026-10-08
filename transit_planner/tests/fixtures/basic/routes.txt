@@ -1,0 +1,4 @@
+route_id,agency_id,route_short_name,route_long_name,route_type
+R_DIRECT,IDFM,D,Direct line,3
+R_FIRST,IDFM,F,First leg,3
+R_SECOND,IDFM,S,Second leg,1

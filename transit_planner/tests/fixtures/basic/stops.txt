@@ -1,0 +1,4 @@
+stop_id,stop_name,stop_lat,stop_lon
+STOP_A,Start,48.8566,2.3522
+STOP_B,Change,48.8600,2.3600
+STOP_C,Destination,48.8650,2.3700

@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: idf-transit-planner
+Version: 0.1.0
+Summary: A learning project for schedule-based Île-de-France transit routing
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.115
+Requires-Dist: uvicorn>=0.30
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3; extra == "dev"
+
+# Île-de-France Transit Planner
+
+A learning project that searches scheduled public-transit journeys across Île-de-France. It will be built in small stages: GTFS schedule data, route search, a REST API, then a French/English web interface.
+
+## Local setup
+
+Use Python 3.11 or newer. From this directory:
+
+```bash
+python3.13 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e ".[dev]"
+python -m pytest
+```
+
+Keep downloaded schedules and the generated SQLite database in `data/`; those local files are ignored by git.
+
+## Current status
+
+Project scaffold and a tiny hand-authored GTFS fixture. The route planner and API are not implemented yet.
