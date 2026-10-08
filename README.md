@@ -25,8 +25,9 @@
 - Built a web scraper that extracts quote-author pairs across all 10 pages of the practice site.
 - Implemented a singly linked list with append, display, search, and removal operations.
 - Practiced stack push and pop, including the empty-stack case.
-- Current topic: queues.
-- Goal for the week: understand FIFO behavior and implement enqueue and dequeue.
+- Implemented queue enqueue and dequeue, verified FIFO order, and handled dequeue on an empty queue.
+- Current topic: hash maps.
+- Goal for the week: understand key-value lookup and implement basic insertion and retrieval.
 
 ## Currently Stuck On
 - (nothing yet)

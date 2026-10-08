@@ -71,3 +71,10 @@ Use this template for each concept. Do not copy the textbook — write it in you
 - **Time / space complexity (if applicable):** With a Python list used as the stack, pushing and popping at the end are O(1) amortized.
 - **Source:** Python stack practice
 - **Self-quiz result:** I pushed X, then Y, and verified that pop returns Y while X remains. I also handled pop on an empty stack by returning `None`.
+
+## Queues
+- **In my own words:** A queue follows first in, first out (FIFO). The first item added is the first item removed.
+- **Why it matters:** Queues are useful when work should be handled in arrival order, such as a line of tasks waiting to be processed.
+- **Time / space complexity (if applicable):** With a Python list, enqueue using `append()` is O(1) amortized. Dequeue using `pop(0)` is O(n) because the remaining items shift. An empty-queue check is O(1).
+- **Source:** Python queue practice
+- **Self-quiz result:** I implemented `enqueue` and `dequeue`, verified that A, B, and C leave the queue in that order, and handled dequeue on an empty queue by returning `None`.
