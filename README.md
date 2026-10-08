@@ -1,12 +1,12 @@
 **Public learning journal.** Documenting my journey in software engineering. Commit history reflects daily study in programming fundamentals, computer science, data structures and algorithms, and system design.
 
 - **Repository:** https://github.com/Sugumaran-Balasubramaniyan/sugumaran-learning-journal
-- **Current phase:** Phase 0 — Language & Environment Setup
+- **Current phase:** Phase 2 — Core Computer Science
 - **Language:** Python
 
 ## Phase Progress
 - [x] Phase 0 — Language & Environment Setup
-- [ ] Phase 1 — Programming Fundamentals
+- [x] Phase 1 — Programming Fundamentals
 - [ ] Phase 2 — Core Computer Science
 - [ ] Phase 3 — Data Structures & Algorithms
 - [ ] Phase 4 — System Design
@@ -18,6 +18,7 @@
 - Wrote a short note on functions and loops in `notes/fundamentals/functions-and-loops.md`.
 - Practiced `if`, `elif`, and `else` with a positive, negative, or zero number check in `sandbox/conditionals.py`.
 - Logged the first DSA warm-up in `log/dsa-log.md`.
+- Implemented a linked list, stack, and queue in the sandbox, including removal and empty-structure cases.
 
 ## This Week's Focus
 - Completed core practice with input, collections, error handling, loops, conditionals, and functions.
@@ -28,6 +29,7 @@
 - Implemented queue enqueue and dequeue, verified FIFO order, and handled dequeue on an empty queue.
 - Current topic: hash maps.
 - Goal for the week: understand key-value lookup and implement basic insertion and retrieval.
+- Learning loop: explanation, runnable example, explained code fragment, independent exercise, then reflection.
 
 ## Currently Stuck On
 - (nothing yet)
@@ -41,6 +43,7 @@
 ## Where things live
 - `ROADMAP.md` — the full six-phase curriculum
 - `log/` — daily tracking: DSA problems, concepts, system design, behavioral stories
+- `log/learning-reflections.md` — brief notes on which learning activities help and what to adjust
 - `notes/` — longer-form notes by subject
 - `projects/` — standalone portfolio projects (each gets its own repo once it ships)
 - `sandbox/` — scratch space for experiments, never committed meaningfully

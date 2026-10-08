@@ -3,6 +3,16 @@
 ## How to use this roadmap
 Work through one phase at a time. Keep the README's "This Week's Focus" section as the single source of truth for what to do right now; the roadmap is the long-range plan.
 
+## Learning loop
+For each new topic, use this sequence:
+1. Explain the idea in plain language.
+2. Walk through a tiny runnable example and a short code fragment, with an explanation of each part.
+3. Try a small exercise independently; if stuck, use one focused hint plus an example on a different problem.
+4. Check learning by explaining the idea, writing it yourself, and applying it to a new problem.
+5. Record which activity helped, what remains confusing, and what to adjust next time in `log/learning-reflections.md`.
+
+Use the three learning checks as evidence, not as a demand to get everything right on the first attempt. Revisit a topic when an explanation, independent implementation, or transfer problem still needs support.
+
 ## Phase 0 (Week 0)
 **Focus:** Pick one language (Python is recommended for this goal) and complete environment setup.
 
@@ -43,6 +53,8 @@ Work through one phase at a time. Keep the README's "This Week's Focus" section 
 - Implement linked list from scratch
 - Implement BST from scratch
 - Write a one-page explanation of virtual memory
+
+**Current sequence:** Hash maps next, then binary search trees. Linked list fundamentals have already been practiced in the sandbox.
 
 ## Phase 3 (Weeks 25–40)
 **Focus:** DSA for interviews.
