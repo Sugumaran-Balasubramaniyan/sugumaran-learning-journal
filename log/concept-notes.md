@@ -78,3 +78,10 @@ Use this template for each concept. Do not copy the textbook — write it in you
 - **Time / space complexity (if applicable):** With a Python list, enqueue using `append()` is O(1) amortized. Dequeue using `pop(0)` is O(n) because the remaining items shift. An empty-queue check is O(1).
 - **Source:** Python queue practice
 - **Self-quiz result:** I implemented `enqueue` and `dequeue`, verified that A, B, and C leave the queue in that order, and handled dequeue on an empty queue by returning `None`.
+
+## Hash Maps
+- **In my own words:** A hash map stores key-value pairs. It hashes a key to choose a bucket; if multiple keys land in the same bucket, it checks the stored keys to find the right pair.
+- **Why it matters:** Hash maps support key-based lookup and can track counts such as repeated colors or votes.
+- **Time / space complexity (if applicable):** With a good key distribution, lookup and insertion are O(1) on average. With chaining, an operation can take O(n) in the worst case if many keys land in one bucket. This practice implementation uses a fixed number of buckets and does not resize.
+- **Source:** Python hash map practice
+- **Self-quiz result:** Implemented `put` and `get` with bucket lists, handled collisions and updates, returned `None` for a missing key, and used the map to count repeated colors. Needed hints while building the loop and frequency-counting logic; independent implementation has not yet been demonstrated.

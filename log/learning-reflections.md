@@ -9,3 +9,11 @@ Use this short check-in after each topic. Record the learner's own answers; leav
 - **Write it:** Independent / needed help / not yet
 - **Apply it to a new problem:** Independent / needed help / not yet
 - **Adjustment for next topic:**
+
+## Topic: Hash Maps
+- **Most helpful activity:**
+- **Still confusing:**
+- **Explain it:**
+- **Write it:**
+- **Apply it to a new problem:**
+- **Adjustment for next topic:**

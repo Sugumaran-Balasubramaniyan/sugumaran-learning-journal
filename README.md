@@ -19,6 +19,7 @@
 - Practiced `if`, `elif`, and `else` with a positive, negative, or zero number check in `sandbox/conditionals.py`.
 - Logged the first DSA warm-up in `log/dsa-log.md`.
 - Implemented a linked list, stack, and queue in the sandbox, including removal and empty-structure cases.
+- Implemented a hash map with bucket lists, collision handling, key updates, and missing-key lookup; used it to count repeated colors.
 
 ## This Week's Focus
 - Completed core practice with input, collections, error handling, loops, conditionals, and functions.
@@ -27,8 +28,9 @@
 - Implemented a singly linked list with append, display, search, and removal operations.
 - Practiced stack push and pop, including the empty-stack case.
 - Implemented queue enqueue and dequeue, verified FIFO order, and handled dequeue on an empty queue.
-- Current topic: hash maps.
-- Goal for the week: understand key-value lookup and implement basic insertion and retrieval.
+- Implemented hash map insertion and retrieval, handled collisions, updated existing keys, and applied the map to frequency counting.
+- Current topic: binary search trees.
+- Goal for the week: understand tree nodes and ordering, then implement insertion and search.
 - Learning loop: explanation, runnable example, explained code fragment, independent exercise, then reflection.
 
 ## Currently Stuck On
