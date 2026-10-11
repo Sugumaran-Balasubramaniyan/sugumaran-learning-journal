@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spark GPU Shuffle Architecture: CPU Bottleneck vs GPUDirect</title>
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #111827;
+      --border: #1f293d;
+      --red-accent: #f43f5e;
+      --red-soft: rgba(244, 63, 94, 0.12);
+      --green-accent: #10b981;
+      --green-soft: rgba(16, 185, 129, 0.12);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 32px 16px;
+    }
+
+    .wrapper {
+      max-width: 980px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(255, 255, 255, 0.05);
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      margin-bottom: 8px;
+      background: rgba(99, 102, 241, 0.15);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    p.subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      background: #1f293d;
+      border: 1px solid #374151;
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover { background: #374151; }
+    .btn.active {
+      background: #4f46e5;
+      border-color: #6366f1;
+    }
+
+    /* Comparison Panels */
+    .lane {
+      position: relative;
+      border-radius: 14px;
+      padding: 24px 20px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .lane-legacy {
+      background: linear-gradient(180deg, var(--red-soft) 0%, rgba(17, 24, 39, 0.4) 100%);
+      border-color: rgba(244, 63, 94, 0.25);
+    }
+
+    .lane-direct {
+      background: linear-gradient(180deg, var(--green-soft) 0%, rgba(17, 24, 39, 0.4) 100%);
+      border-color: rgba(16, 185, 129, 0.25);
+    }
+
+    .lane-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .lane-title {
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lane-title.red { color: #fb7185; }
+    .lane-title.green { color: #34d399; }
+
+    .lane-tag {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .lane-legacy .lane-tag {
+      background: rgba(244, 63, 94, 0.2);
+      color: #fda4af;
+    }
+
+    .lane-direct .lane-tag {
+      background: rgba(16, 185, 129, 0.2);
+      color: #a7f3d0;
+    }
+
+    /* SVG Architecture Layout */
+    svg {
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .node-box {
+      rx: 10px;
+      stroke-width: 1.5;
+      transition: all 0.3s ease;
+    }
+
+    .node-title {
+      font-size: 12px;
+      font-weight: 700;
+      fill: #ffffff;
+      text-anchor: middle;
+    }
+
+    .node-sub {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      text-anchor: middle;
+    }
+
+    /* Telemetry Bottom Bar */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-size: 18px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .stat-value span.sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* Animations & Keyframes */
+    @keyframes pulse-slow-red {
+      0%, 100% { stroke: #f43f5e; fill: rgba(244, 63, 94, 0.15); filter: drop-shadow(0 0 6px rgba(244, 63, 94, 0.4)); }
+      50% { stroke: #9f1239; fill: rgba(244, 63, 94, 0.05); filter: drop-shadow(0 0 1px transparent); }
+    }
+
+    @keyframes pulse-glow-green {
+      0%, 100% { filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.6)); }
+      50% { filter: drop-shadow(0 0 2px rgba(16, 185, 129, 0.2)); }
+    }
+
+    .cpu-pulsing {
+      animation: pulse-slow-red 1.6s infinite ease-in-out;
+    }
+
+    .gpu-pulsing {
+      animation: pulse-glow-green 2s infinite ease-in-out;
+    }
+
+    /* Data Packet Flows */
+    @keyframes flow-legacy-packet {
+      0% { offset-distance: 0%; opacity: 0; }
+      10% { opacity: 1; }
+      35% { offset-distance: 36%; animation-timing-function: cubic-bezier(0.8, 0, 0.2, 1); } /* Stall inside CPU */
+      65% { offset-distance: 40%; } /* Choke waiting on Deserialization */
+      90% { opacity: 1; }
+      100% { offset-distance: 100%; opacity: 0; }
+    }
+
+    @keyframes flow-direct-packet {
+      0% { offset-distance: 0%; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { offset-distance: 100%; opacity: 0; }
+    }
+
+    .packet-legacy {
+      offset-path: path("M 80 50 L 230 50 L 380 50 L 530 50 L 680 50 L 830 50");
+      animation: flow-legacy-packet 4.8s infinite ease-in-out;
+      fill: #f43f5e;
+      filter: drop-shadow(0 0 6px #f43f5e);
+    }
+
+    .packet-legacy-lag {
+      offset-path: path("M 80 50 L 230 50 L 380 50 L 530 50 L 680 50 L 830 50");
+      animation: flow-legacy-packet 4.8s infinite ease-in-out;
+      animation-delay: -2.4s;
+      fill: #f43f5e;
+      filter: drop-shadow(0 0 6px #f43f5e);
+    }
+
+    .packet-direct {
+      offset-path: path("M 100 50 L 810 50");
+      animation: flow-direct-packet 1.2s infinite linear;
+      fill: #34d399;
+      filter: drop-shadow(0 0 8px #10b981);
+    }
+
+    .packet-direct-lag {
+      offset-path: path("M 100 50 L 810 50");
+      animation: flow-direct-packet 1.2s infinite linear;
+      animation-delay: -0.6s;
+      fill: #34d399;
+      filter: drop-shadow(0 0 8px #10b981);
+    }
+
+    /* Pause state */
+    .paused * {
+      animation-play-state: paused !important;
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper" id="container">
+  <header>
+    <div>
+      <span class="badge">Spark Distributed Architecture</span>
+      <h1>GPU Shuffle Bottleneck: Host CPU vs. Direct RDMA</h1>
+      <p class="subtitle">Why GPU clusters freeze during heavy groupBy & Join stages</p>
+    </div>
+    <div class="controls">
+      <button class="btn" id="btn-toggle">Pause</button>
+      <button class="btn" id="btn-speed">0.5x Speed</button>
+    </div>
+  </header>
+
+  <!-- Lane 1: The Bottlenecked CPU Path -->
+  <div class="lane lane-legacy">
+    <div class="lane-header">
+      <div class="lane-title red">
+        <span>❌ Legacy CPU Serialization Trap</span>
+      </div>
+      <div class="lane-tag">Latency: ~480ms | CPU Bound</div>
+    </div>
+
+    <svg viewBox="0 0 910 100" fill="none">
+      <!-- Underlying dashed track -->
+      <path d="M 80 50 L 830 50" stroke="rgba(244, 63, 94, 0.25)" stroke-width="3" stroke-dasharray="6 6" />
+
+      <!-- Step 1: Source GPU -->
+      <g transform="translate(20, 20)">
+        <rect width="120" height="60" class="node-box" fill="#1f2937" stroke="#4b5563"/>
+        <text x="60" y="32" class="node-title">GPU VRAM</text>
+        <text x="60" y="48" class="node-sub" fill="#9ca3af">Partition Out</text>
+      </g>
+
+      <!-- Step 2: Host RAM -->
+      <g transform="translate(170, 20)">
+        <rect width="120" height="60" class="node-box" fill="#1e2230" stroke="#374151"/>
+        <text x="60" y="32" class="node-title">Host RAM</text>
+        <text x="60" y="48" class="node-sub" fill="#6b7280">PCIe Copy (Slow)</text>
+      </g>
+
+      <!-- Step 3: Host CPU (The choke point) -->
+      <g transform="translate(320, 20)">
+        <rect width="120" height="60" class="node-box cpu-pulsing"/>
+        <text x="60" y="30" class="node-title" fill="#fecdd3">Host CPU</text>
+        <text x="60" y="47" class="node-sub" fill="#f43f5e" font-weight="bold">100% Serialize ⚠️</text>
+      </g>
+
+      <!-- Step 4: Saturated Network -->
+      <g transform="translate(470, 20)">
+        <rect width="120" height="60" class="node-box" fill="#1e2230" stroke="#f43f5e" stroke-dasharray="3 3"/>
+        <text x="60" y="32" class="node-title">NIC (TCP/IP)</text>
+        <text x="60" y="48" class="node-sub" fill="#fca5a5">Kernel Buffer</text>
+      </g>
+
+      <!-- Step 5: Target CPU -->
+      <g transform="translate(620, 20)">
+        <rect width="120" height="60" class="node-box" fill="#2d151c" stroke="#f43f5e"/>
+        <text x="60" y="30" class="node-title" fill="#fecdd3">Target CPU</text>
+        <text x="60" y="47" class="node-sub" fill="#fca5a5">Deserialize</text>
+      </g>
+
+      <!-- Step 6: Target GPU (Idle) -->
+      <g transform="translate(770, 20)">
+        <rect width="120" height="60" class="node-box" fill="#182030" stroke="#4b5563"/>
+        <text x="60" y="32" class="node-title" fill="#9ca3af">Remote GPU</text>
+        <text x="60" y="48" class="node-sub" fill="#ef4444">IDLE WAITING 💤</text>
+      </g>
+
+      <!-- Animated Bottlenecked Packets -->
+      <circle r="7" class="packet-legacy" />
+      <circle r="7" class="packet-legacy-lag" />
+    </svg>
+  </div>
+
+  <!-- Lane 2: The Direct GPU Shuffle Path -->
+  <div class="lane lane-direct">
+    <div class="lane-header">
+      <div class="lane-title green">
+        <span>✅ Direct GPU-to-GPU Shuffle (Spark-RAPIDS + UCX)</span>
+      </div>
+      <div class="lane-tag">Latency: ~12ms | Hardware Saturated</div>
+    </div>
+
+    <svg viewBox="0 0 910 100" fill="none">
+      <!-- High-speed direct pipeline bar -->
+      <rect x="140" y="42" width="630" height="16" rx="8" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="1.5" />
+      <text x="455" y="54" class="node-sub" fill="#a7f3d0" font-weight="700">HIGH-SPEED BUS (NVLink Intra-Node / GPUDirect RDMA Inter-Node)</text>
+
+      <!-- Step 1: Accelerated Source GPU -->
+      <g transform="translate(20, 20)">
+        <rect width="120" height="60" class="node-box gpu-pulsing" fill="#064e3b" stroke="#10b981" stroke-width="2"/>
+        <text x="60" y="32" class="node-title">GPU 1</text>
+        <text x="60" y="48" class="node-sub" fill="#6ee7b7">cuDF / RAPIDS</text>
+      </g>
+
+      <!-- Step 2: Accelerated Target GPU -->
+      <g transform="translate(770, 20)">
+        <rect width="120" height="60" class="node-box gpu-pulsing" fill="#064e3b" stroke="#10b981" stroke-width="2"/>
+        <text x="60" y="32" class="node-title">GPU 2</text>
+        <text x="60" y="48" class="node-sub" fill="#6ee7b7">100% UTILIZED ⚡</text>
+      </g>
+
+      <!-- Direct High-Speed Packets -->
+      <circle r="8" class="packet-direct" />
+      <circle r="8" class="packet-direct-lag" />
+    </svg>
+  </div>
+
+  <!-- Telemetry Bar -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">Host CPU Overhead</div>
+      <div class="stat-value" style="color: #fb7185;">
+        100% <span class="sub">vs 0% (Bypassed)</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Shuffle Transfer Path</div>
+      <div class="stat-value" style="color: #60a5fa;">
+        6 Hops <span class="sub">down to 1 Hop</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Cluster GPU Utilization</div>
+      <div class="stat-value" style="color: #34d399;">
+        96.8% <span class="sub">up from 4.2%</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const container = document.getElementById('container');
+  const btnToggle = document.getElementById('btn-toggle');
+  const btnSpeed = document.getElementById('btn-speed');
+
+  let isPaused = false;
+  let isHalfSpeed = false;
+
+  btnToggle.addEventListener('click', () => {
+    isPaused = !isPaused;
+    container.classList.toggle('paused', isPaused);
+    btnToggle.textContent = isPaused ? 'Resume' : 'Pause';
+    btnToggle.classList.toggle('active', isPaused);
+  });
+
+  btnSpeed.addEventListener('click', () => {
+    isHalfSpeed = !isHalfSpeed;
+    const legacyDots = document.querySelectorAll('.packet-legacy, .packet-legacy-lag');
+    const directDots = document.querySelectorAll('.packet-direct, .packet-direct-lag');
+
+    legacyDots.forEach(dot => {
+      dot.style.animationDuration = isHalfSpeed ? '9.6s' : '4.8s';
+    });
+    directDots.forEach(dot => {
+      dot.style.animationDuration = isHalfSpeed ? '2.4s' : '1.2s';
+    });
+
+    btnSpeed.textContent = isHalfSpeed ? '1.0x Speed' : '0.5x Speed';
+    btnSpeed.classList.toggle('active', isHalfSpeed);
+  });
+</script>
+
+</body>
+</html>
